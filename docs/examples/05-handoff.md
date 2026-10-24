@@ -47,7 +47,8 @@ Exactly: `Pick: /<name>` on the first line, then two sentences of justification,
 ```
 Pick: /both
 It says both AIs will work on the task without implying a contest. It is short, easy to remember, and still makes sense if the plugin is renamed.
-Rejected: /two-time — ties to branding; /tt — opaque to newcomers; /pair — could mean pairing```
+Rejected: /two-time — ties to branding; /tt — opaque to newcomers; /pair — could mean pairing
+```
 
 ## 3. Import step (`/handoff from chatgpt`)
 

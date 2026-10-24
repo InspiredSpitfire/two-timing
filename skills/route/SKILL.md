@@ -7,7 +7,9 @@ description: >-
   the user asks "which AI should do this", "route this", "Claude or ChatGPT for
   this", "who should I ask", "what's the move", names a brain state (Feral,
   Froggy, Foggy, Fried) with a task, or runs /two-timing on a task. Also handles
-  "edit the routing table" and "show me the routing table".
+  "edit the routing table" and "show me the routing table". Route only advises;
+  to actually run the two-AI work use duet, second-opinion, showdown, or
+  handoff, whichever the card names.
 argument-hint: "<task, or: show | edit | init [.]> [--brain feral|froggy|foggy|fried] [--run]"
 ---
 

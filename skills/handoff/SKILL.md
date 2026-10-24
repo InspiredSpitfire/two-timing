@@ -7,7 +7,9 @@ description: >-
   when the user says "hand this to ChatGPT", "handoff", "write this up for
   ChatGPT", "package this for GPT", "bring this back from ChatGPT", "import
   ChatGPT's answer", or wants to move a task between the two AIs. The two share
-  no memory; this is the bridge.
+  no memory; this is the bridge. For a quick critique of a draft inside this
+  session use duet; for a pass/fail check use second-opinion; handoff is for
+  moving the whole task.
 argument-hint: "[to chatgpt | from chatgpt] [--send] [--copy] [the ask, or the pasted reply / file]"
 ---
 
