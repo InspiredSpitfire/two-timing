@@ -1,0 +1,15 @@
+{
+  "$schema": "https://www.schemastore.org/claude-code-marketplace.json",
+  "name": "two-timing",
+  "description": "Claude + ChatGPT working as one brain from inside Claude Code: duet, route, second-opinion, showdown, handoff.",
+  "owner": {
+    "name": "Inspired Spitfire"
+  },
+  "plugins": [
+    {
+      "name": "two-timing",
+      "source": "./",
+      "description": "Claude + ChatGPT. Two AIs. One brain. Collaborative drafting, task routing with an editable table, adversarial second opinions, side-by-side showdowns, and context handoffs between the two."
+    }
+  ]
+}
