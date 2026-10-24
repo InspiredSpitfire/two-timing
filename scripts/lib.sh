@@ -64,10 +64,14 @@ tt_isolated_codex_home() {
   printf '%s\n' "$dir/codex"
 }
 
-# Isolated CLAUDE_CONFIG_DIR: empty on purpose. Claude Code keeps live OAuth in
-# the OS keychain, which the CLI reaches without a credentials file.
-tt_isolated_claude_home() {
+# Isolated Claude: NOT a scratch CLAUDE_CONFIG_DIR. Since Claude Code 2.1.3xx
+# the keychain credential is keyed per config dir, so an empty scratch dir is
+# simply logged out. Isolation comes from flags instead (no settings, no skills,
+# no tools, no MCP) plus running from an empty scratch cwd so no project
+# CLAUDE.md or project memory is in scope. Canary-checked 2026-10-24: a stock
+# prompt from this mode showed no user voice or instructions.
+tt_isolated_claude_cwd() {
   local dir="$1"
-  mkdir -p "$dir/claude"
-  printf '%s\n' "$dir/claude"
+  mkdir -p "$dir/cwd"
+  printf '%s\n' "$dir/cwd"
 }

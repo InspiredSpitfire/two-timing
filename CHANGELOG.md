@@ -2,6 +2,12 @@
 
 All notable changes to this plugin. Dates are release dates.
 
+## [0.1.1] - 2026-10-24
+
+### Fixed
+- Isolated Claude contender (`ask_claude.sh --isolated`, used by `/showdown`) no longer uses an empty scratch `CLAUDE_CONFIG_DIR`. Claude Code binds the keychain login to the config dir, so that mode was always logged out. Isolation now comes from flags (no settings, skills, MCP, or tools) plus an empty scratch working directory; canary-checked for voice leakage.
+- README doctor path no longer hard-codes the plugin version.
+
 ## [0.1.0] - 2026-10-23
 
 First working version.

@@ -2,14 +2,12 @@
 
 `/showdown In two sentences, explain to a non-programmer what a shell alias is and give one example.`
 
-The script ran both contenders in parallel, isolated from user config, and wrote the file below. On the capture machine headless Claude was logged out, so the Claude side is an error, recorded as that side's result. Nothing was rerun and this session's own answer was not substituted: it is pre-coached by the user's config and would not be a like-for-like contender.
+Captured 2026-10-24 with both contenders authenticated. The script ran stock Claude and stock ChatGPT in parallel, isolated from user config, and labelled the answers A and B in random order. Grading happened before anyone opened the key.
 
-Because one side had no answer, the blind-grading step was skipped and no winner was declared. After `claude login`, the same command produces two answers and the skill spawns two graders who see only the prompt, Answer A, and Answer B.
-
-## The file the script wrote
+## 1. The file the script wrote
 
 ````markdown
-# Showdown 2026-10-23-191428
+# Showdown 2026-10-24-152254
 
 **Prompt:**
 
@@ -17,31 +15,61 @@ Because one side had no answer, the blind-grading step was skipped and no winner
 In two sentences, explain to a non-programmer what a shell alias is and give one example.
 ```
 
-- Claude: claude-opus-5-5 (2.1.220 (Claude Code))
+- Claude: claude-opus-5-5 (2.1.310 (Claude Code))
 - ChatGPT: gpt-6.1-sol (codex-cli 0.163.0-alpha.11.1)
 - Conditions: headless, user config isolated, one shot each, tools: none
 
 ## Answer A
 
-
-[ERROR: claude side exited 77]
-two-timing: Claude Code is logged out machine-wide. Run 'claude login' (or /login inside claude) in an interactive terminal, then retry.
-Not logged in · Please run /login
+A shell alias is a shortcut you type in a terminal to run a longer command. For example, `alias ll='ls -l'` lets you type `ll` to see a detailed list of files.
 
 ## Answer B
 
-A shell alias is a shortcut you create for a command you type in the terminal. For example, `alias ll='ls -la'` lets you type `ll` to list all files, including hidden ones, with details.
+A shell alias is a nickname you create for a longer command you type in the terminal, so you can run it with a short word instead of retyping the whole thing each time. For example, `alias ll="ls -la"` lets you type just `ll` to see a detailed list of all the files in a folder.
 
 ## Key
 
-Which answer was which is in `showdown-2026-10-23-191428.key`. Open it only after grading.
+Which answer was which is in `showdown-2026-10-24-152254.key`. Open it only after grading.
 ````
 
-## The key file (opened only after grading)
+## 2. Blind grading
+
+Three graders, each given only the prompt, Answer A, Answer B, and the rubric. Grader 1 and grader 3 were ChatGPT on fresh threads (different vendor from the session); grader 2 was a Claude Sonnet subagent (different model from the session). A third grader was added because the first two split.
+
+| Criterion | Grader 1 (A / B) | Grader 2 (A / B) | Grader 3 (A / B) |
+|---|---|---|---|
+| Correctness | 5 / 5 | 5 / 5 | 5 / 5 |
+| Completeness | 5 / 5 | 4 / 5 | 5 / 5 |
+| Prompt compliance | 5 / 5 | 4 / 5 | 5 / 5 |
+| Style fit | 5 / 5 | 4 / 5 | 5 / 5 |
+| **Total** | **20 / 20** | **17 / 20** | **20 / 20** |
+| Winner | tie | B | tie |
+
+Grader 2's reason: B explains the "nickname" idea and the benefit (no retyping) in plain language and describes the example's result more clearly; A uses "terminal" and "shortcut" with less explanation.
+
+## 3. Verdict
+
+Tie by majority, with one grader preferring B. Both answers are correct, two sentences long, and give a valid `alias ll` example. The only daylight any grader found was B's extra plain-language explanation of *why* you would want an alias. Not a split decision: two of three graders saw no difference, and the dissent was consistent in direction, so it is reported as a tie with a lean to B.
+
+Grader tier: different-vendor (two graders) and different-model (one grader). The session that ran the race did not score it.
+
+## 4. Key, opened after grading
 
 ```
-A=claude
-B=chatgpt
+A=chatgpt
+B=claude
 ```
 
-Result for this capture: **no contest, Claude side unavailable (logged out).** UNVERIFIED on the capture machine until headless Claude is logged in.
+So the lean, where there was one, was toward Claude.
+
+## Earlier attempt (2026-10-23): the honest failure mode
+
+The first run of the same command on 2026-10-23 produced this Claude side, because headless Claude was logged out on the machine:
+
+```
+[ERROR: claude side exited 77]
+two-timing: Claude Code is logged out machine-wide. Run 'claude login' (or /login inside claude) in an interactive terminal, then retry.
+Not logged in · Please run /login
+```
+
+The script recorded the error as that side's answer, grading was skipped, and no winner was declared. The session's own answer was not substituted: it is pre-coached by the user's config and is not a like-for-like contender.

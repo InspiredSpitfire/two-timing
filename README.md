@@ -67,7 +67,7 @@ Inside Claude Code the same two moves are `/plugin marketplace add InspiredSpitf
 Then check both halves of the brain:
 
 ```bash
-bash ~/.claude/plugins/cache/two-timing/two-timing/0.1.0/scripts/doctor.sh
+bash ~/.claude/plugins/cache/two-timing/two-timing/*/scripts/doctor.sh
 ```
 
 (That is where a user-scope install lands; `claude plugin list` confirms it. Add `--live` to send a one-word prompt through each CLI.)

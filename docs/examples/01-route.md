@@ -70,3 +70,20 @@ Next: just do it here
 ```
 
 The dial only ever downgrades a pattern; it never adds a second AI.
+
+## 4. Captured from a fresh headless session
+
+Typed into a brand-new `claude -p` session (Claude Code 2.1.310, Sonnet) with the plugin installed user-scope, no other context:
+
+`/route 20 title options for a workshop on terminal basics`
+
+```
+Route: 20 title options for a terminal basics workshop
+Table: ~/dev/two-timing/references/routing-table.md (shipped default)
+Row: "Give me 20 options", names, angles, hooks, titles
+Lead: ChatGPT · Check: Claude · Pattern: chatgpt→claude
+Why: Breadth first, then Claude picks and sharpens three.
+Next: /duet --lead chatgpt "20 title options for a workshop on terminal basics"
+```
+
+It also named the runner-up row ("Nuanced writing, matching a voice"), noted that no project, user, or env-var copy existed, and stopped at the card because no `--run` was given. That is the slash command triggering and the skill being followed, unprompted.

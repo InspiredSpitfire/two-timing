@@ -8,8 +8,10 @@
 # Options:
 #   -m MODEL     model override (e.g. claude-opus-5-5, claude-sonnet-5-5)
 #   -o FILE      also save the answer to FILE
-#   --isolated   stock-model mode: scratch CLAUDE_CONFIG_DIR, no settings, no
-#                skills, no tools. Use for fair comparisons.
+#   --isolated   stock-model mode: no settings, no skills, no MCP, no tools, run
+#                from an empty scratch directory. Keeps the real config dir
+#                because the login credential is bound to it. Use for fair
+#                comparisons.
 #   --tools LIST comma-separated tools to allow (default none in isolated mode,
 #                Claude Code's default otherwise)
 #   -h           help
@@ -48,15 +50,16 @@ else tt_err "no prompt given"; usage >&2; exit 64; fi
 
 args=(-p --no-session-persistence)
 [ -n "$model" ] && args+=(--model "$model")
+run_dir="$PWD"
 if [ "$isolated" = 1 ]; then
-  args+=(--setting-sources "" --disable-slash-commands --tools "${tools}")
-  export CLAUDE_CONFIG_DIR; CLAUDE_CONFIG_DIR=$(tt_isolated_claude_home "$tmp")
+  args+=(--setting-sources "" --disable-slash-commands --strict-mcp-config --tools "${tools}")
+  run_dir=$(tt_isolated_claude_cwd "$tmp")
 elif [ -n "$tools" ]; then
   args+=(--tools "$tools")
 fi
 # A nested Claude Code session must not inherit the parent's session markers.
 set +e
-env -u CLAUDECODE -u CLAUDE_CODE_ENTRYPOINT "$claude" "${args[@]}" < "$tmp/prompt.md" > "$tmp/answer.md" 2> "$tmp/stderr.txt"
+( cd "$run_dir" && env -u CLAUDECODE -u CLAUDE_CODE_ENTRYPOINT "$claude" "${args[@]}" < "$tmp/prompt.md" > "$tmp/answer.md" 2> "$tmp/stderr.txt" )
 rc=$?
 set -e
 if grep -q -i -E 'not logged in|oauth session expired|please run /login' "$tmp/answer.md" "$tmp/stderr.txt"; then
