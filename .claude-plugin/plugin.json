@@ -1,6 +1,6 @@
 {
   "name": "two-timing",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Two-Timing: Claude + ChatGPT. Two AIs. One brain. Run both from inside Claude Code as collaborators, not rivals: /duet drafts with one and stress-tests with the other, /route picks which AI (or which step) using an editable routing table, /second-opinion sends a finished answer to ChatGPT for a PASS / NEEDS REVISION check, /showdown compares them side by side, and /handoff packages context so either AI can pick up where the other left off.",
   "author": {
     "name": "Inspired Spitfire"
@@ -8,6 +8,7 @@
   "homepage": "https://github.com/InspiredSpitfire/two-timing",
   "repository": "https://github.com/InspiredSpitfire/two-timing",
   "license": "MIT",
+  "icon": ".claude-plugin/icon.png",
   "keywords": [
     "claude",
     "chatgpt",

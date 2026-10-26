@@ -2,6 +2,14 @@
 
 All notable changes to this plugin. Dates are release dates.
 
+## [0.1.2] - 2026-10-26
+
+### Added
+- Directory listing icon: `.claude-plugin/icon.png` (1024 px, two halves becoming one in the brand palette), with the editable source at `assets/icon.svg`.
+
+### Changed
+- Repo rules moved from the plugin root to `.claude/CLAUDE.md` (Claude Code still loads it as project memory; the plugin validator no longer warns). `AGENTS.md` follows it.
+
 ## [0.1.1] - 2026-10-24
 
 ### Fixed
