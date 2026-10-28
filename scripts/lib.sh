@@ -47,20 +47,27 @@ tt_find_claude() {
   for c in "$HOME/.local/bin/claude" "/opt/homebrew/bin/claude" "/usr/local/bin/claude" "$HOME/.claude/local/claude"; do
     [ -x "$c" ] && { printf '%s\n' "$c"; return 0; }
   done
-  tt_err "Claude Code CLI not found. Install it (https://claude.com/claude-code) or set CLAUDE_BIN=/path/to/claude."
+  tt_err "Claude Code CLI not found. Install Claude Code or set CLAUDE_BIN=/path/to/claude."
   return 1
 }
 
 # Scratch dir for one run. Caller removes it.
 tt_mktemp() { mktemp -d "${TMPDIR:-/tmp}/two-timing.XXXXXX"; }
 
-# Isolated CODEX_HOME: nothing but a symlink to the real auth file, so the
-# answer is a stock model turn (no user skills, memory, or instructions).
-# Symlink, never copy: a copy would leave a second live token in a temp dir.
+# Isolated Codex: a scratch CODEX_HOME holding nothing but a symlink to the
+# user's own auth file, so the answer is a stock model turn: no user AGENTS.md,
+# skills, plugins, or memories (flags alone do not drop those; verified
+# 2026-10-28). The symlink is never copied, never sent anywhere, and is
+# deleted with the scratch dir when the run ends. Only --isolated uses this;
+# ordinary calls use the user's real CODEX_HOME untouched.
 tt_isolated_codex_home() {
   local dir="$1"
   mkdir -p "$dir/codex"
-  [ -f "$HOME/.codex/auth.json" ] && ln -s "$HOME/.codex/auth.json" "$dir/codex/auth.json"
+  if [ -f "$HOME/.codex/auth.json" ]; then
+    ln -s "$HOME/.codex/auth.json" "$dir/codex/auth.json"
+  else
+    tt_err "no Codex login found; run: codex login"; return 1
+  fi
   printf '%s\n' "$dir/codex"
 }
 

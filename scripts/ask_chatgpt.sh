@@ -14,8 +14,9 @@
 #   -C DIR          working directory for Codex (default: current dir)
 #   -o FILE         also save the answer to FILE
 #   -e EFFORT       reasoning effort: low | medium | high
-#   --isolated      stock-model mode: scratch CODEX_HOME (auth only), --ephemeral,
-#                   --ignore-user-config. Use for fair comparisons.
+#   --isolated      stock-model mode: scratch CODEX_HOME (a symlink to your own
+#                   auth file, nothing else), --ephemeral, --ignore-user-config.
+#                   Use for fair comparisons.
 #   --web           allow web search (tools.web_search=true)
 #   --raw           print the full JSON event stream instead of the last message
 #   -h              help
@@ -76,7 +77,7 @@ args+=(--json --skip-git-repo-check -o "$tmp/answer.md")
 [ -n "$cwd" ] && [ -z "$thread" ] && args+=(-C "$cwd")
 if [ "$isolated" = 1 ]; then
   args+=(--ephemeral --ignore-user-config)
-  export CODEX_HOME; CODEX_HOME=$(tt_isolated_codex_home "$tmp")
+  export CODEX_HOME; CODEX_HOME=$(tt_isolated_codex_home "$tmp") || exit 69
 fi
 for img in "${images[@]+"${images[@]}"}"; do args+=(-i "$img"); done
 [ -n "$thread" ] && args+=("$thread")

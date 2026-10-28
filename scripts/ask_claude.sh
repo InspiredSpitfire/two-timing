@@ -50,7 +50,7 @@ else tt_err "no prompt given"; usage >&2; exit 64; fi
 
 args=(-p --no-session-persistence)
 [ -n "$model" ] && args+=(--model "$model")
-run_dir="$PWD"
+run_dir="."
 if [ "$isolated" = 1 ]; then
   args+=(--setting-sources "" --disable-slash-commands --strict-mcp-config --tools "${tools}")
   run_dir=$(tt_isolated_claude_cwd "$tmp")

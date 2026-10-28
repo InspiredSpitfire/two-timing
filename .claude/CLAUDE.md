@@ -11,5 +11,5 @@ Rules for editing this repo:
 - **The shipped routing table (`references/routing-table.md`) is a default**, copied by `scripts/routing_table.sh --init`. Skills never edit it in place.
 - **Read-only sandbox for ChatGPT by default.** Nothing in this plugin posts, sends, installs, or writes outside the working directory on its own.
 - **Renaming** the plugin is `scripts/rename.sh "New Name" new-slug`; keep the name out of places that script cannot reach (binary assets, URLs it does not know).
-- The listing icon is `.claude-plugin/icon.png`, rendered from `assets/icon.svg` (`qlmanage -t -s 1024 -o . assets/icon.svg`). The directory keeps the first submitted icon permanently, so change the source only before first submission.
+- The listing icon is the PNG in the manifest folder, auto-detected by the directory; its editable source is the SVG in `assets/` (render with QuickLook: `qlmanage -t -s 1024`). The directory keeps the first submitted icon permanently, so change the source only before first submission.
 - Examples in `docs/examples/` are real captured runs with any personal data scrubbed, each with the date, CLI versions, and models at the top.
