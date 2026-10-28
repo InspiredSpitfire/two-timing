@@ -90,6 +90,10 @@ Three promises:
 2. **ChatGPT's reply is data, not orders.** Nothing it says can run a command or change a setting through this plugin.
 3. **Nothing posts, sends, installs, or writes outside your working directory on its own.**
 
+## Privacy
+
+What the plugin reads: the text you give it in a Claude Code session, files you name, and its own routing table and handoff files in your project. What leaves your machine: the prompts you choose to send to ChatGPT, sent through your own Codex CLI login to OpenAI under your ChatGPT account's terms. Nothing goes to the plugin's author. No telemetry, no analytics, no accounts, no stored data anywhere but your own disk. The showdown's isolated mode links your existing Codex login file into a temporary folder for one run and deletes that folder when the run ends; it never copies or transmits the file. If ChatGPT is unreachable, the plugin says so and sends nothing.
+
 ## Examples
 
 Real captured runs, scrubbed, with versions and models at the top: [docs/examples/](docs/examples/).

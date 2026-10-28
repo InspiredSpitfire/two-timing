@@ -5,7 +5,7 @@ All notable changes to this plugin. Dates are release dates.
 ## [0.1.3] - 2026-10-28
 
 ### Changed
-- Directory submission pass. The Claude script no longer reads the working directory from the environment. The manifest drops the explicit `icon` field; the directory auto-detects the PNG in the manifest folder. Isolated Codex runs keep the scratch-home approach (a symlink to the user's own auth file, nothing else, deleted after the run): flags alone were verified to still load the user's global instructions and skills, which would rig a showdown.
+- Directory submission pass. The Claude script no longer reads the working directory from the environment. The manifest drops the explicit `icon` field; the directory auto-detects the PNG in the manifest folder. README gains a Privacy section. Isolated Codex runs keep the scratch-home approach (a symlink to the user's own auth file, nothing else, deleted after the run): flags alone were verified to still load the user's global instructions and skills, which would rig a showdown.
 
 ## [0.1.2] - 2026-10-26
 
